@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+{{block.super}}
+<style>
+        .row{
+            grid-gap:30px;
+        }
+        body{
+        font-weight:bolder;
+        background-color: skyblue;
+        font-family: 'Vollkorn', serif;}
+
+        .card{
+        font-weight: normal;
+        border-radius:20px;
+        padding: 0;
+        color:#562B0C;
+    }
+    .card-body{
+        background-color: azure;
+    }
+    .btn{
+        background-color: skyblue;
+    }
+  
+</style>
+<div class='label'><br><br>
+    <div class='container'>
+    <div class=" container row mb-3">
+        {% for pharmacy in pharmacies %}
+        <div class='col-lg-3 card text-center'>
+            <img class="card-img-top" src="https://media.sciencephoto.com/image/m6400280/800wm" width='100%' alt="Card image">
+            <div class='card-body'>
+                <h4><b>{{pharmacy.name}}</b></h4><br>
+                <span>Located at {{pharmacy.location}}</span><br><br>
+                <a href='/pharmacy/{{pharmacy.id}}' class='btn'> View Details</a>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+    
+</div></div>
+{% endblock %}

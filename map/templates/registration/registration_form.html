@@ -1,0 +1,55 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+{% load static %}
+
+<style>
+  body{
+        background-image:url('https://images.ctfassets.net/ut7rzv8yehpf/2Y1g3AC91inxe7AKe0xjYz/2dd03fa080bbd6f83ad126a27959d073/medications_and_blood_sugar.jpeg?w=1800&fl=progressive&q=50');
+        background-repeat:no-repeat;
+        
+        background-size:cover;
+    }
+    .container{
+        color:#562B0C;
+    }
+</style>
+<div class="container"><br><br><br>
+  <div class="row">
+
+    <div class="col-md-7">
+
+    </div>
+    <div class="col-md-4 mt-5">
+      {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+      {% endif %}
+      <div class="panel-default">
+        <div class="panel-heading">
+          <h1 class="text-center" style='color:#562B0C;'><b>Sign Up</b></h1>
+        </div>
+        <div class="panel-body">
+
+          <form action="/accounts/register/"  method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group">
+              <input type="submit" class="btn btn-outline-info btn-sm" value="SignUp">
+            </div>
+
+            <input type="hidden" name="newprofile" value="newprofile">
+
+          </form>
+              <div class="border-bottom pt-3">
+                <p class="text-muted">Already have an account?<a class="ml-2 text-info" href="{% url 'login' %}">Sign In</a></p>
+              </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}

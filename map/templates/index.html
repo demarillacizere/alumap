@@ -1,0 +1,140 @@
+{%extends 'base.html'%} {% load static%} {% block content %} {% load bootstrap4%} {{block.super}}
+<style>
+  
+  .banner {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/media/pictures/alu2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .banner {
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    color: white;
+    font-family: "Vollkorn", serif;
+    font-size: 20px;
+    position:absolute;
+    top: 0;
+
+  }
+  .banner a {
+    color: white;
+    font-weight: bold;
+  }
+  .form-container{
+    padding-bottom: 50px;
+    margin:auto;
+  }
+  .form {
+    gap:60px;
+  }
+  .form-group{
+    gap:20px;
+  }
+  select {
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 60px;
+  }
+  .cover {
+    margin: 0 auto;
+    width: 100%;
+  }
+</style>
+
+<div class="banner">
+        
+        <div class="form-container">
+          <form class="container form form-inline" role="search" action="{% url 'search_results' %}">
+            <div class="form-group">
+              <label for="currentloc"
+              >Select current location</label
+            >
+            <select
+              name="currentloc"
+              id="currentloc"
+              class="form-control"
+              aria-label="Default select example"
+            >
+            {% for loc in locs %}
+            <option value="{{loc.name}}">{{loc.name}}</option>
+            {% endfor %}
+            {% for room in rooms %}
+            <option value="{{room.name}}">{{room.name}}</option>
+            {% endfor %}
+            {% for building in buildings %}
+            <option value="{{building.name}}">{{building.name}}</option>
+            {% endfor %}
+            
+            </select
+          >
+            </div>
+           <div class="form-group form-inline">
+            <label for="destination"
+              >Search by location name</label
+            >
+            <select
+              name="destination"
+              id="destination"
+              class="form-control mr-4 "
+              aria-label="Default select example"
+              onchange="emptyselection('location');"
+            >
+            <option hidden disabled selected value> -- select a location -- </option>
+            {% for loc in locs %}
+            <option value="{{loc.name}}">{{loc.name}}</option>
+            {% endfor %}
+            {% for room in rooms %}
+            <option value="{{room.name}}">{{room.name}}</option>
+            {% endfor %}
+            {% for building in buildings %}
+            <option value="{{building.name}}">{{building.name}}</option>
+            {% endfor %}
+              
+              </select
+            >
+            <h5 class="italics"> || </h5>
+            <label for="event"
+              >Search by event name</label
+            >
+            <select
+              name="event"
+              id="event_venue"
+              class="form-control"
+              aria-label="Default select example"
+              onchange="emptyselection('venue');"
+            >
+            
+            <option hidden disabled selected value> -- select an event -- </option>
+              {% for event in events %}
+              <option  value="{{event.name}}">{{event.name}}</option>
+              {% endfor %}</select
+            ><br />
+            <label class="text-center"
+              ><button type="submit" class="btn btn-default">
+                <i class="fas fa-search"> Search</i>
+              </button></label
+            >
+           </div>
+            
+          </form>
+        </div>
+</div>
+<br /><br />
+
+<script type="text/javascript">
+  function emptyselection(select_name){
+    var searchbydestination = document.getElementById("destination");
+    var searchbyevent = document.getElementById("event_venue");
+    if (select_name == 'location'){
+      searchbyevent.selectedIndex = null;
+    }
+    else if(select_name == 'venue'){
+      searchbydestination.selectedIndex = null;
+    }
+  }
+      
+</script>
+{%endblock%}

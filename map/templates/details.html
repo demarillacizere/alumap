@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+{{block.super}}
+<style>
+    .label{
+        background-color:rgb(187, 240, 222);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        color:black;
+
+    }
+    footer{
+        position:relative;
+    }
+  
+</style>
+<div class='label'><br><br>
+    <div class='container'>
+    <div class=" container row">
+        <div class='col-md-2'></div>
+        <div class="col-md-3" >
+            <div style="text-align:center">
+                <img src="{{drug.pic.url}}"  width="200px"  height="200px " style='border-radius: 50%;'>
+            </div>
+        </div><br>
+        <div class="col-md-6 col-lg-6">
+            <div class="card-1" ><br>
+                <div class="card-text" style="padding: 20px;">
+                    <h5><strong>Name:</strong> {{drug.name}}</h5>
+                    <h5><strong>Description:</strong> {{drug.description}}</h5>
+                </div>
+
+            </div>
+
+        </div>
+    </div><br>
+    <h4 class='text-center'>Pharmacies with {{drug.name}}</h4><br>
+            {% for pharmacy in nearest %}
+            <div class='col-lg-3 card text-center'>
+                <div class='card-body'>
+                    <h4><b>{{pharmacy.name}}</b></h4><br>
+                    <span>Located at {{pharmacy.location}}</span><br><br>
+                    <a href='/pharmacy/{{pharmacy.id}}' class='btn btn-info'> View Details</a>
+                </div>
+                </div>
+            {% endfor%}
+            {% for pharmacy in others %}
+            <div class='col-lg-3 card text-center'>
+                <div class='card-body'>
+                    <h4><b>{{pharmacy.name}}</b></h4><br>
+                    <span>Located at {{pharmacy.location}}</span><br><br>
+                    <a href='/pharmacy/{{pharmacy.id}}' class='btn btn-info'> View Details</a>
+                </div>
+                </div>
+            {% endfor%}<br><br>
+</div>
+</div>
+
+{% endblock %}

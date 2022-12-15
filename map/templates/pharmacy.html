@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+{{block.super}}
+<style>
+    body{
+        background-image:linear-gradient(to right, rgba(24, 24, 24, 0.3), rgba(24, 23, 23, 0.3)),url('https://images.pexels.com/photos/3683085/pexels-photo-3683085.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+        background-size:cover;
+        background-repeat:no-repeat;
+        height:100vh;
+
+    font-family: 'Vollkorn', serif;
+    }
+    .container{
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        margin-top:80px;
+
+    }
+</style>
+<div class='container'>
+    <div class="row">
+        <div class='card p-4 col-md-6'>
+            <h4><b><u>{{pharm.name}}</u></b></h4><br>
+            <h5><b>Contact:</b> {{pharm.contact}}</h5>
+            <h5><b>Location:</b>{{pharm.location}}</h5>
+            <h5><b>Insurance partners:</b> {% for partner in pharm.insurance.all %}{{partner.name}}, {% endfor %}</h5>
+        </div>
+        <div class="col-md-6">
+            <iframe src="{{pharm.direction}}" width="500" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+        </div>
+    </div></div>
+      
+{%endblock%}
