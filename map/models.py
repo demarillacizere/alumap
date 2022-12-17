@@ -79,8 +79,7 @@ class Event(models.Model):
 class Direction(models.Model):
     source=models.ForeignKey(Room,on_delete=models.CASCADE,related_name='source_location')
     destination=models.ForeignKey(Room,on_delete=models.CASCADE,related_name='destination_location')
-    directions = models.CharField(max_length=250)
-    pic=models.ImageField(upload_to='pictures/',blank=True)
+    directions_pic=models.ImageField(upload_to='pictures/',blank=True)
     
     def save_direction(self):
         self.save()
